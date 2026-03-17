@@ -1,21 +1,20 @@
-@@ -1 +1,254 @@
 /* ---------------------------------------------------------------- */
-/* Configuration Globale */
+/* 1. CONFIGURATION GLOBALE */
 /* ---------------------------------------------------------------- */
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Police Montserrat */
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Défilement fluide pour les ancres */
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; /* Gestion des bordures et paddings */
 }
 
 /* ---------------------------------------------------------------- */
-/* Barre de nav */
+/* 2. BARRE DE NAVIGATION (HEADER) */
 /* ---------------------------------------------------------------- */
 header {
     background: white;
@@ -24,7 +23,7 @@ header {
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    position: fixed; /* Fixé en haut de l'écran */
     width: 100%; 
     top: 0;
     z-index: 1000;
@@ -43,13 +42,13 @@ header {
 
 .logo h1 {
     margin: 0;
-    color: #006673;
+    color: #006673; /* Bleu-vert signature */
     font-size: 24px;
 }
 
 .logo p {
     margin: 0;
-    color: #93c01f;
+    color: #93c01f; /* Vert signature */
     font-size: 14px;
 }
 
@@ -74,7 +73,7 @@ nav a:hover {
 }
 
 /* ---------------------------------------------------------------- */
-/* Image de présentation */
+/* 3. SECTION IMAGE PRÉSENTATION (HERO) */
 /* ---------------------------------------------------------------- */
 .image_presentation {
     background-image: linear-gradient(rgba(0,102,115,0.7), rgba(0,102,115,0.7)), url('senior.jpeg');
@@ -101,7 +100,7 @@ nav a:hover {
     font-size: 1.2rem;
 }
 
-/* --- ANIMATION DU BOUTON TÉLÉPHONE --- */
+/* --- ANIMATION PULSATION TÉLÉPHONE --- */
 .bulle {
     background-color: #93c01f;  
     color: white;               
@@ -111,14 +110,8 @@ nav a:hover {
     display: inline-block;
     font-size: 1.5rem;
     font-weight: bold;
-    box-shadow: 0 0 0 0 rgba(147, 192, 31, 0.7);
-    animation: pulse-phone 2s infinite; /* Animation de pulsation */
+    animation: pulse-phone 2s infinite; /* Pulsation continue */
     transition: transform 0.3s ease;
-}
-
-.bulle:hover {
-    transform: scale(1.1);
-    background-color: #a4d422;
 }
 
 @keyframes pulse-phone {
@@ -128,7 +121,7 @@ nav a:hover {
 }
 
 /* ---------------------------------------------------------------- */
-/* Contenu Principal */
+/* 4. CARTES DE SERVICES (EFFET 3D TILT) */
 /* ---------------------------------------------------------------- */
 .block {
     max-width: 1200px;
@@ -138,42 +131,35 @@ nav a:hover {
     color: #006673; 
 }
 
-.presentation h1 {
-    text-align: center;
-    font-size: 35px;
-}
-
-.presentation p {
-    color: black;
-    line-height: 1.6;
-}
-
 .services_container {
     display: flex;         
     flex-wrap: wrap;       
-    gap: 20px;             
+    gap: 30px;             
     justify-content: center; 
+    perspective: 1000px; /* Ajoute de la profondeur pour l'effet 3D */
 }
 
 .bulle_page {
     background-color: white;
     color: black;
-    border: 2px solid #93c01f;
+    border: 2px solid #93c01f; /* Bordure verte signature */
     border-radius: 20px;
     padding: 20px;
     width: 280px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    animation: flottaison 4s ease-in-out infinite; /* Animation de flottaison */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    transform-style: preserve-3d; /* Permet aux éléments enfants de rester en 3D */
 }
 
-@keyframes flottaison {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+/* --- L'EFFET 3D AU SURVOL --- */
+.bulle_page:hover {
+    transform: rotateX(10deg) rotateY(10deg) translateY(-10px); /* Inclinaison et soulèvement */
+    box-shadow: 15px 15px 30px rgba(0,0,0,0.15); /* Ombre portée plus forte */
+    border-color: #006673; /* La bordure devient bleue au survol */
 }
 
 /* ---------------------------------------------------------------- */
-/* Formulaire Responsive */
+/* 5. FORMULAIRE ET BOUTON D'ENVOI */
 /* ---------------------------------------------------------------- */
 .bloc {
     background-color: #FCFCF2;
@@ -185,23 +171,13 @@ nav a:hover {
     margin: 20px auto;
 }
 
-#nom, #prenom, #age, #nom1, #prenom1, #age1, #message, #boutton {
+#nom, #prenom, #age, #message, #boutton {
     width: 100%; 
     padding: 12px;
     margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #ccc;
     font-family: 'Montserrat', sans-serif;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-#nom:focus, #message:focus {
-    border-color: #93c01f;
-}
-
-#message {
-    height: 150px;
 }
 
 /* --- ANIMATION DU BOUTON ENVOYER --- */
@@ -214,13 +190,12 @@ nav a:hover {
     height: 50px;
     font-size: 18px;
     box-shadow: 0 4px #005a66;
-    transition: all 0.2s ease; /* Transition fluide pour le clic */
-    margin-top: 10px;
+    transition: all 0.2s ease; /* Effet de clic fluide */
 }
 
 #boutton:hover {
     background-color: #00899b;
-    transform: translateY(-2px); /* Effet de soulèvement */
+    transform: translateY(-2px);
     box-shadow: 0 6px #005a66;
 }
 
@@ -230,7 +205,7 @@ nav a:hover {
 }
 
 /* ---------------------------------------------------------------- */
-/* MEDIA QUERIES */
+/* 6. ADAPTATION MOBILE */
 /* ---------------------------------------------------------------- */
 @media (max-width: 768px) {
     header {
@@ -239,17 +214,14 @@ nav a:hover {
         padding: 15px;
     }
 
-    nav {
-        margin-top: 15px;
-    }
-
     nav ul {
         flex-direction: column; 
         align-items: center;
         gap: 10px;
     }
 
-    .image_presentation h1 { font-size: 2rem; }
-    .bulle { font-size: 1.2rem; }
-    .bulle_page { width: 100%; animation: none; }
+    .bulle_page { 
+        width: 100%; 
+        transform: none !important; /* On désactive la 3D sur mobile pour éviter les bugs tactiles */
+    }
 }
