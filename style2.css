@@ -213,7 +213,7 @@ nav a:hover {
     height: 50px;
     font-size: 18px;
     box-shadow: 0 4px #005a66;
-    transition: all 32222222s ease; /* Transition fluide pour le clic */
+    transition: all 0.4s ease; /* Transition fluide pour le clic */
     margin-top: 10px;
 }
 
