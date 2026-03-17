@@ -163,7 +163,7 @@ nav a:hover {
     padding: 20px;
     width: 280px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    animation: flottaison 4s ease-in-out infinite; /* Animation de flottaison */
+    animation: transform 4s ease-in-out infinite; /* Animation de flottaison */
 }
 
 @keyframes slide-up-fade {
