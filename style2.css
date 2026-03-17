@@ -5,11 +5,12 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 * {
-    box-sizing: border-box; /* Crucial pour que les paddings ne fassent pas déborder les éléments */
+    box-sizing: border-box;
 }
 
 /* ---------------------------------------------------------------- */
@@ -23,7 +24,7 @@ header {
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    width: 100%; /* Changé de 90% à 100% pour éviter les décalages */
+    width: 100%; 
     top: 0;
     z-index: 1000;
 }
@@ -64,6 +65,11 @@ nav a {
     color: #006673;
     font-weight: bold;
     font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #93c01f;
 }
 
 /* ---------------------------------------------------------------- */
@@ -74,13 +80,13 @@ nav a {
     background-position: center;
     background-size: cover;
     width: 100%;
-    padding: 150px 20px 100px 20px; /* Ajout de padding haut pour compenser le header fixed */
+    padding: 150px 20px 100px 20px; 
     text-align: center;
 }
 
 .image_presentation h1 {
     color: white;
-    font-size: 3rem; /* Utilisation de rem pour une meilleure adaptation */
+    font-size: 3rem; 
     margin-bottom: 10px;
 }
 
@@ -94,6 +100,7 @@ nav a {
     font-size: 1.2rem;
 }
 
+/* --- ANIMATION DU BOUTON TÉLÉPHONE --- */
 .bulle {
     background-color: #93c01f;  
     color: white;               
@@ -103,6 +110,20 @@ nav a {
     display: inline-block;
     font-size: 1.5rem;
     font-weight: bold;
+    box-shadow: 0 0 0 0 rgba(147, 192, 31, 0.7);
+    animation: pulse-phone 2s infinite; /* Animation de pulsation */
+    transition: transform 0.3s ease;
+}
+
+.bulle:hover {
+    transform: scale(1.1);
+    background-color: #a4d422;
+}
+
+@keyframes pulse-phone {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(147, 192, 31, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(147, 192, 31, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(147, 192, 31, 0); }
 }
 
 /* ---------------------------------------------------------------- */
@@ -139,7 +160,15 @@ nav a {
     border: 2px solid #93c01f;
     border-radius: 20px;
     padding: 20px;
-    width: 280px; /* Largeur fixe pour les bulles mais flex-wrap gère l'alignement */
+    width: 280px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    animation: flottaison 4s ease-in-out infinite; /* Animation de flottaison */
+}
+
+@keyframes flottaison {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 /* ---------------------------------------------------------------- */
@@ -150,40 +179,62 @@ nav a {
     padding: 20px; 
     border: 1px solid #ddd; 
     border-radius: 20px;
-    width: 100%; /* Prend toute la largeur disponible */
-    max-width: 600px; /* Mais s'arrête à 600px sur PC */
+    width: 100%; 
+    max-width: 600px; 
     margin: 20px auto;
 }
 
 #nom, #prenom, #age, #nom1, #prenom1, #age1, #message, #boutton {
-    width: 100%; /* S'adapte à la largeur du .bloc */
-    padding: 10px;
+    width: 100%; 
+    padding: 12px;
     margin-top: 5px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#nom:focus, #message:focus {
+    border-color: #93c01f;
 }
 
 #message {
     height: 150px;
 }
 
+/* --- ANIMATION DU BOUTON ENVOYER --- */
 #boutton {
     background-color: #007382;
     color: white;
     border: none;
     cursor: pointer;
     font-weight: bold;
-    height: 45px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 18px;
+    box-shadow: 0 4px #005a66;
+    transition: all 0.2s ease; /* Transition fluide pour le clic */
+    margin-top: 10px;
+}
+
+#boutton:hover {
+    background-color: #00899b;
+    transform: translateY(-2px); /* Effet de soulèvement */
+    box-shadow: 0 6px #005a66;
+}
+
+#boutton:active {
+    transform: translateY(2px); /* Effet d'enfoncement au clic */
+    box-shadow: 0 2px #005a66;
 }
 
 /* ---------------------------------------------------------------- */
-/* MEDIA QUERIES (Pour les téléphones) */
+/* MEDIA QUERIES */
 /* ---------------------------------------------------------------- */
 @media (max-width: 768px) {
     header {
-        flex-direction: column; /* Empile le logo et le menu */
-        position: relative; /* On retire le fixed sur mobile pour libérer de l'espace */
+        flex-direction: column; 
+        position: relative; 
         padding: 15px;
     }
 
@@ -192,33 +243,12 @@ nav a {
     }
 
     nav ul {
-        flex-direction: column; /* Menu vertical sur mobile */
+        flex-direction: column; 
         align-items: center;
         gap: 10px;
     }
 
-    .image_presentation {
-        padding: 60px 20px;
-    }
-
-    .image_presentation h1 {
-        font-size: 2rem; /* Taille de texte réduite pour mobile */
-    }
-
-    .image_presentation h2 {
-        font-size: 1.2rem;
-    }
-
-    .bulle {
-        font-size: 1.2rem;
-        padding: 10px 20px;
-    }
-
-    .bulle_page {
-        width: 100%; /* Les bulles de services prennent toute la largeur sur tel */
-    }
-    
-    .bloc {
-        padding: 15px;
-    }
+    .image_presentation h1 { font-size: 2rem; }
+    .bulle { font-size: 1.2rem; }
+    .bulle_page { width: 100%; animation: none; }
 }
