@@ -210,8 +210,8 @@ nav a:hover {
     border: none;
     cursor: pointer;
     font-weight: bold;
-    height: 50px;
-    font-size: 18px;
+    height: 100px;
+    font-size: 50px;
     box-shadow: 0 4px #005a66;
     transition: all 0.2s ease; /* Transition fluide pour le clic */
     margin-top: 10px;
